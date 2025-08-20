@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>所有事项</p>
+        <ul>
+            <!-- 
+                在使用Vue的v-for指令时，推荐为每个渲染的元素添加key属性，原因如下：
+
+                    - 性能优化：key属性帮助Vue更高效地更新和渲染元素。通过提供唯一的键，
+                    Vue可以最小化DOM操作的数量，从而提高性能。具体来说，当数据发生变化时，
+                    Vue会根据新旧节点的key值来判断节点是否相同。如果相同，则认为是同一个
+                    节点，只会更新节点的内容，而不会重新创建和销毁节点。
+
+                    - 避免使用索引作为key：虽然可以使用索引作为key值，但在列表顺序改变时，
+                    可能会导致组件状态更新不准确的问题。因此，建议使用具有唯一性的标识符，如
+                    ID，而不是索引或随机数作为key值。
+            -->
+            <li v-for="item in todoList" :key="item.title">{{item.title}}: {{item.isDone}}</li>
+        </ul>
+
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    todoList: [
+                        { title: "吃饭", isDone: true },
+                        { title: "锻炼", isDone: false },
+                        { title: "阅读", isDone: false },
+                        { title: "睡觉", isDone: true }
+                    ]
+                }
+            }
+        }).mount("#app")
+    </script>
+
+</body>
+
+</html>

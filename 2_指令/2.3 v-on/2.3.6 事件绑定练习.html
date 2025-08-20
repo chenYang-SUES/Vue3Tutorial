@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .tabs {
+            display: flex;
+        }
+
+        .tabs div {
+            margin-left: 20px;
+        }
+
+        .contents div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            display: none;
+        }
+
+        .active {
+            display: block !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="tabs">
+            <div @click="show(1)">体育新闻</div>
+            <div @click="show(2)">科技新闻</div>
+            <div @click="show(3)">娱乐新闻</div>
+        </div>
+
+        <div class="contents">
+            <div :class="{active: num === 1}">我是体育新闻</div>
+            <div :class="{active: num === 2}">我是科技新闻</div>
+            <div :class="{active: num === 3}">我是娱乐新闻</div>
+        </div>
+
+    </div>
+
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data() {
+                return {
+                    num: 1
+                }
+            },
+            methods: {
+                show(num) {
+                    this.num = num
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

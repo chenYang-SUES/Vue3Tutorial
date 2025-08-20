@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <select v-model="val">
+            <option value="">请选择</option>
+            <option value="江苏">江苏省</option>
+            <option value="山东省">山东省</option>
+            <option value="广东省">广东省</option>
+        </select>
+        <h1>{{ val }}</h1>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    val: ""
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

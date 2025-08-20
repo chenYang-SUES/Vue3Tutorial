@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="val"> 记住密码
+        <h1>{{ val }}</h1>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    val: false
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <template v-for="i in num">
+            <div>你好啊</div>
+            <div>hahaha</div>
+        </template>
+
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    num: 5
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

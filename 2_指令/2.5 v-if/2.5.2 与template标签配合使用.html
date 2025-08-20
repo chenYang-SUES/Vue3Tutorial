@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- template是纯粹的容器，不会被渲染出来 -->
+        <!-- template可以配合v-if指令但不能配合v-show指令使用 -->
+        <template v-if="flag">
+            <div>体育新闻</div>
+            <div>科技新闻</div>
+            <div>社会新闻</div>
+        </template>
+        <button @click="toggleShow">显示切换</button>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    flag: true,
+                }
+            },
+            methods: {
+                toggleShow() {
+                    this.flag = !this.flag
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

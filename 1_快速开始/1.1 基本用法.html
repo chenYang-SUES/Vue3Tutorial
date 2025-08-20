@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <!-- 根组件 -->
+    <div id="app">
+        {{ msg }}
+    </div>
+
+    <script>
+        const { createApp } = Vue
+        const App = {  // 选项式Api(不推荐)
+            // template: `<h1>{{ msg }}</h1>`,  // 选项1, template,只有根组件可以不写template
+            data() {  // 选项2，data，专门用于返回数据
+                return {
+                    msg: "hello vue3!"
+                }
+            }
+        }
+
+        createApp(App).mount("#app")
+    </script>
+</body>
+
+</html>

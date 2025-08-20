@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>待做事项</p>
+
+        <!-- 正确写法 -->
+        <ul>
+            <template v-for="item in todoList">
+                <li v-if="!item.isDone">{{item.title}}</li>
+            </template>
+        </ul>
+
+        <!-- 错误示例 -->
+        <!-- <ul>
+            <li v-for="item in todoList" v-if="!item.isDone">{{item.title}}</li>
+        </ul> -->
+
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    todoList: [
+                        { title: "吃饭", isDone: true },
+                        { title: "锻炼", isDone: false },
+                        { title: "阅读", isDone: false },
+                        { title: "睡觉", isDone: true }
+                    ]
+                }
+            }
+        }).mount("#app")
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 绑定到一个字符串 -->
+        <h3>:style="style"</h3>
+        <div :style="style"></div>
+
+        <!-- 绑定到一个样式对象, 可动静结合 -->
+        <h3>:style="{width: '200px', height, backgroundColor }"</h3>
+        <div :style="{width: '200px', height, backgroundColor }"></div>
+
+        <!-- 绑定到一个列表, [样式对象1, 样式对象2] -->
+        <h3></h3>
+        <div :style="[style1, style2]"></div>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    style: "width: 100px; height:100px; background-color: red",
+                    height: "100px",
+                    backgroundColor: "yellow",  // background-color ==> backgroundColor
+                    style1: {
+                        height: "50px",
+                        width: "50px",
+                        backgroundColor: "#ff55ff",
+                    },
+                    style2: {
+                        marginLeft: "300px",  // margin-left ==> marginLeft
+                        paddingTop: "100px"  // padding-top ==> paddingTop
+                    }
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

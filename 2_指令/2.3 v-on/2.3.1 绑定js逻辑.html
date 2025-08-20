@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<div id="app">
+    <div v-on:click="backgroundColor='blue'" :style="{width:'200px', height:'200px', backgroundColor}"></div>
+    <hr>
+    <!-- 简写@ -->
+    <div @click="backgroundColor='blue'" :style="{width:'200px', height:'200px', backgroundColor}"></div>
+</div>
+
+<script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+            return {
+                backgroundColor: "red"
+            }
+        }
+    }).mount('#app')
+</script>
+
+<body>
+
+</body>
+
+</html>

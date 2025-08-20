@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h3>多值绑定: v-bind="{a,id}"</h3>
+        <div v-bind="{a,id}"></div>
+
+        <h3>多值绑定简写: :="{a,id}"</h3>
+        <div :="{a,id}"></div>
+    </div>
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data() {
+                return {
+                    a: "title",
+                    id: "a",
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<div id="app">
+    <!-- 方法1: 函数嵌套函数 -->
+    <h3>@click="(e) => onClick(e)"</h3>
+    <div @click="(e) => onClick(e)" :style="{width:'200px', height:'200px', backgroundColor}"></div>
+
+    <!-- 方法2: vue的$event -->
+    <h3>@click=""</h3>
+    <div @click="onClick2(100, $event)" :style="{width:'200px', height:'200px', backgroundColor}"></div>
+
+</div>
+
+<script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+            return {
+                backgroundColor: "red"
+            }
+        },
+        methods: {
+            onClick(e) {
+                console.log(e)
+            },
+            onClick2(value, e) {
+                this.onClick(e)  // 通过this获取其他方法
+                alert(value)
+            },
+        }
+
+    }).mount('#app')
+</script>
+
+<body>
+
+</body>
+
+</html>

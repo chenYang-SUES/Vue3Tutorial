@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h3>标准: v-bind:a="title"</h3>
+        <div v-bind:id="a"></div>
+
+        <h3>简写: :a="title"</h3>
+        <div :id="a"></div>
+
+        <!-- 被绑定的属性与要绑定的变量重名时可省略="变量名" -->
+        <h3>简写: :id</h3>
+        <div :id></div>
+
+        <!-- 动态绑定属性名 -->
+        <h3>:[key]="value"</h3>
+        <div :[key]="value"></div>
+    </div>
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data() {
+                return {
+                    a: "title",
+                    id: "a",
+                    key: "class",
+                    value: "base"
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

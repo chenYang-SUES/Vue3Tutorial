@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<div id="app">
+    <!-- 方法1: 逐个写v-on" -->
+    <h3>@click="onClick" @mouseover="onMouseOver"</h3>
+    <div @click="onClick" @mouseover="onMouseOver" :style="{width:'200px', height:'200px', backgroundColor}"></div>
+    <!-- 方法2: v-on="{事件1:方法1, 事件2:方法2}"" -->
+    <h3>@="{click: onClick, mouseover: onMouseOver}</h3>
+    <div @="{click: onClick, mouseover: onMouseOver}" :style="{width:'200px', height:'200px', backgroundColor}"></div>
+
+</div>
+
+<script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+            return {
+                backgroundColor: "red"
+            }
+        },
+        methods: {
+            onClick() {
+                alert("点击了")
+            },
+            onMouseOver() {
+                this.backgroundColor = "green"
+            },
+        }
+
+    }).mount('#app')
+</script>
+
+<body>
+
+</body>
+
+</html>

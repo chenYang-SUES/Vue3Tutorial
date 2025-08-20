@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 绑定一个字符串 -->
+        <h3>class="classes"</h3>
+        <div :class="classes"></div>
+
+        <!-- 绑定一个对象: {class名: 布尔值} -->
+        <h3>:class="{active: isActive, base: isBase}</h3>
+        <div :class="{active: isActive, base: isBase}"></div>
+
+        <!-- 绑定一个数组:  -->
+        <h3>:class="[class1, class2]</h3>
+        <div :class="[class1, class2]"></div>
+
+        <!-- 静态class和动态绑定class同时存在 -->
+        <h3>class="container" :class="[class1, class2]</h3>
+        <div class="container" :class="[class1, class2]"></div>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    classes: "base active",
+                    class1: "active",
+                    class2: "base",
+                    isActive: true,
+                    isBase: false
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

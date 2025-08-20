@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="val" @blur="check">
+        <h1>{{ val }}</h1>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    val: "",
+                    reg: /^\d{6}$/
+                }
+            },
+            methods: {
+                check() {
+                    if (this.reg.test(this.val)) {
+                        alert("通过校验")
+                    } else {
+                        alert("校验失败")
+                    }
+                }
+            }
+
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

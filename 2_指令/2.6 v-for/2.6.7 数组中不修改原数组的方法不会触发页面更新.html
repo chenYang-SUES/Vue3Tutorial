@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in musicList" :key="item">{{item}}</li>
+            <button @click="change">修改列表</button>
+        </ul>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    musicList: ["发如雪", "夜曲", "东风破", "她的睫毛", "听见下雨的声音"]
+                }
+            },
+            methods: {
+                change() {
+                    // this.musicList.splice(1, 2)  // splice方法可以修改原数组，能触发更新
+                    this.musicList.slice(2, 2)  // slice方法不能修改原数组，无法触发更新
+                    // filter虽然同样不能修改原数组，但是可以手动将其结果赋值给原数组来触发更新
+                    this.musicList = this.musicList.filter((value) => {
+                        return value.indexOf("发") != -1
+                    })
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h3>待办事项</h3>
+        <input type="text" v-model="val" placeholder="请输入待办事项">
+        <button @click="add">添加</button>
+        <ul>
+            <li v-for="(item, index) in todoList" :key="item" @click="del(index)">{{ item }}</li>
+        </ul>
+
+        <script>
+            const { createApp } = Vue
+
+            createApp({
+                data() {
+                    return {
+                        todoList: [],
+                        val: ""
+                    }
+                },
+                methods: {
+                    add() {
+                        if (this.val != "") {
+                            this.todoList.push(this.val)
+                            this.val = ""
+                        }
+                    },
+
+                    del(index) {
+                        this.todoList.splice(index, 1)
+                    }
+                }
+            }).mount("#app")
+        </script>
+    </div>
+</body>
+
+</html>

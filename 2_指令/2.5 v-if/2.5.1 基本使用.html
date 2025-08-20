@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="grade >= 90">优秀</div>
+        <div v-else-if="grade >= 80">良好</div>
+        <div v-else-if="grade >=60">及格</div>
+        <div v-else>不及格</div>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    grade: 88
+                }
+            },
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

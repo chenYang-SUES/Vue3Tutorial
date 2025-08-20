@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(value, key, index) in person">
+                第{{ index }}轮循环: {{ key }} - {{ value }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    person: {
+                        name: "cyeext",
+                        age: 28,
+                        height: 175
+                    }
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

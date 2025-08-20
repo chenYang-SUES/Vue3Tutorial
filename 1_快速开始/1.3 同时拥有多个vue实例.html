@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app1">
+        {{ msg1 }}
+    </div>
+    <div id="app2">
+        {{ msg2 }}
+    </div>
+    <script>
+        const { createApp } = Vue
+        const app1 = createApp({
+            data() {
+                return {
+                    msg1: "hello div1"
+                }
+            }
+        })
+
+        app1.mount("#app1")
+
+        const app2 = createApp({
+            data() {
+                return {
+                    msg2: "hello div2"
+                }
+            }
+        })
+
+        app2.mount("#app2")
+    </script>
+</body>
+
+</html>
