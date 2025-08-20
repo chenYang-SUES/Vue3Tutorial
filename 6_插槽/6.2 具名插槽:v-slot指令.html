@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <!-- v-slot指令只能用在组件或template标签上 -->
+            <!-- 语法: v-slot:插槽名 -->
+            <template v-slot:before>
+                <h2>插入before插槽中的内容</h2>
+            </template>
+            <!-- v-slot简写: # -->
+            <template #after>
+                <h2>插入after插槽中的内容</h2>
+            </template>
+            <!-- 不具名插槽的名字就叫default -->
+            <template #default>
+                <h2>插入默认插槽中的内容</h2>
+            </template>
+        </child>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        const Child = {
+            template: `
+                <div>
+                    <slot></slot>
+                    <slot name="before"></slot>
+                    <h1>我是子组件</h1>     
+                    <slot name="after"></slot>
+                </div> 
+            `
+        }
+
+        createApp({
+            components: {
+                Child
+            }
+        }).mount("#app")
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>这是一条来自: {{msg}}</h1>
+        <!-- 1. 在子组件标签上绑定自定义事件myevent, 对应的处理函数handler为父组件方法 -->
+        <!-- 事件名不要使用驼峰规则 -->
+        <child @myevent="handler"></child>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+        const Child = {
+            // 3. 子组件模板绑定click事件, 对应的处理函数doClick为子组件方法
+            template: `
+                <h2 @click="doClick">我是子组件</h2>
+            `,
+            data() {
+                return {
+                    msg: "子组件的消息"
+                }
+            },
+            methods: {
+                // 4. 定义doClick方法
+                // 通过this.$emit("自定义事件名", 要传的参数)
+                // 触发子组件标签上的自定义事件myevent
+                doClick() {
+                    this.$emit("myevent", this.msg)
+                }
+            }
+        }
+
+        createApp({
+            data() {
+                return {
+                    msg: ""
+                }
+            },
+            methods: {
+                // 2. 定义父组件中的方法, 关键步骤是要接收参数
+                // 将参数赋值给父组件自己的参数
+                handler(msg) {
+                    this.msg = msg
+                }
+            },
+            components: {
+                Child
+            }
+        }).mount("#app")
+    </script>
+
+</body>
+
+</html>

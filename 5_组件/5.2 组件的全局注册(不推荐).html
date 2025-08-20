@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-grand-child></my-grand-child>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        const MyGrandChild = {
+            template: `
+            <h2>{{ msg }}</h2>
+            `,
+            data() {
+                return {
+                    msg: "我是孙组件"
+                }
+            },
+        }
+
+        const MyChild = {
+            template: `
+            <h1>{{ msg }}</h1>
+            <my-grand-child></my-grand-child>
+            `,
+            data() {
+                return {
+                    msg: "我是子组件"
+                }
+            },
+            components: {
+                MyGrandChild
+            }
+        }
+
+
+        const app = createApp({
+
+        })
+        // 利用app.component(标识符，组件)全局注册组价
+        app.component("MyGrandChild", MyGrandChild)
+        app.mount("#app")
+    </script>
+</body>
+
+</html>

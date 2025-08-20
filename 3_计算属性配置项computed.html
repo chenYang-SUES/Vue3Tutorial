@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <h1>{{showGender()}}</h1>
+        <h1>{{logisticStatus}}</h1>
+        <button @click="editMsg">修改msg</button>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    msg: false,
+                    gender: 2,
+                    logistics: 4
+                }
+            },
+            methods: {
+                showGender() {
+                    console.log("showGender 执行了")
+                    return this.gender == 1 ? "男" : "女"
+                },
+                editMsg() {
+                    this.msg = !this.msg
+                }
+            },
+            computed: {
+                logisticStatus() {
+                    console.log("logisticStatus 执行了")
+                    // 基于缓存，判断依赖项是否变化决定是否执行
+                    // this.msg  // this.msg是依赖项，虽然无关，但其值变化也会触发计算属性执行
+                    if (this.logistics == 1) {
+                        // 计算属性必须要有返回值
+                        return "未发货"
+                    } else if (this.logistics == 2) {
+                        return "已发货"
+                    } else if (this.logistics == 3) {
+                        return "配送中"
+                    } else if (this.logistics == 4) {
+                        return "已完成"
+                    }
+                }
+            }
+
+
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

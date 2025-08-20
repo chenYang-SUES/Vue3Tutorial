@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>我是根组件</h1>
+        <child :msg="msg"></child>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        const GrandChild = {
+            template: `
+                <h3>我是孙组件</h3>
+                <h3>{{ msg }}</h3>
+            `,
+            props: ["msg"]
+        }
+
+        const Child = {
+            template: `
+                <h2>我是子组件</h2>
+                <grand-child :msg="msg"></grand-child>
+            `,
+            props: ['msg'],
+            components: {
+                GrandChild
+            }
+        }
+
+        createApp({
+            data() {
+                return {
+                    msg: "来自根组件的消息"
+                }
+            },
+            components: {
+                Child
+            }
+
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

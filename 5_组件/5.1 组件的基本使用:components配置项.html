@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 5. 子组件的应用 -->
+        <!-- 方法1: 使用大驼峰标签(推荐, 但是只能在脚手架中使用) -->
+        <!-- <MyChild></MyChild> -->
+        <!-- 方法2: 小写横杠连接, 浏览器环境下必须使用这种方式 -->
+        <my-child></my-child>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        const MyGrandChild = {
+            template: `
+            <h2>{{ msg }}</h2>
+            `,
+            data() {
+                return {
+                    msg: "我是孙组件"
+                }
+            },
+        }
+
+        // 1. 官方推荐采用大驼峰规则命名子组件
+        const MyChild = {
+            // 2. 子组件必须有template配置项
+            template: `
+            <h1>{{ msg }}</h1>
+            <my-grand-child></my-grand-child>
+            `,
+            data() {
+                return {
+                    // 3. 子组件中的数据、方法、计算属性等只能在子组件中使用
+                    // 因此不同组件的变量可以重名
+                    msg: "我是子组件"
+                }
+            },
+            components: {  // 6. 非根组件也能注册子组件
+                MyGrandChild  // 7. 在哪个组件中注册就只能在哪个组件中使用
+            }
+        }
+
+
+        createApp({
+            components: { // 4. 子组件必须在根组件中注册才能使用
+                MyChild
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

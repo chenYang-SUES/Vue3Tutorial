@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 
+            3. 在父组件的模板中调用子组件的标签, 可以用v-bind绑定props中的元素
+            其值由父组件提供（因为是在父组件的模板中), 相当于提供实参
+        -->
+        <my-nav :color="navColor1"></my-nav>
+        <my-nav :color="navColor2"></my-nav>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        const MyNav = {
+            // 1. props是一个数组，和data、methods、computed等配置项一样,
+            // 本组件的template可以直接访问其中定义的数据(每个template只能由自己的其他配置项提供数据)
+            // 因此其中的元素名称和其他配置项中定义的数据不能重名
+            template: `
+                <ul :style="{backgroundColor: color}">
+                    <li>首页</li>
+                    <li>产品</li>
+                    <li>资讯</li>
+                </ul>
+            `,
+            data() {
+                return {
+                    msg: "我是子组件"
+                }
+            },
+            props: ['color']  // 2. 每一个元素相当于是一个形参
+        }
+
+        createApp({
+            data() {
+                return {
+                    navColor1: "pink",
+                    navColor2: "blue",
+                }
+            },
+            components: {
+                MyNav
+            }
+        }).mount("#app")
+    </script>
+
+</body>
+
+</html>

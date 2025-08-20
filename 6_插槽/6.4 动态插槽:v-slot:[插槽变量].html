@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <template #[name]>
+                <h2>插入{{name}}插槽中的内容</h2>
+            </template>
+        </child>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        const Child = {
+            template: `
+                <div>
+                    <slot></slot>
+                    <slot name="before"></slot>
+                    <h1>我是子组件</h1>     
+                    <slot name="after"></slot>
+                </div> 
+            `
+        }
+
+        createApp({
+            data() {
+                return {
+                    name: "after"
+                }
+            },
+            components: {
+                Child
+            }
+        }).mount("#app")
+    </script>
+
+</body>
+
+</html

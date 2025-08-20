@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>a: {{ a }}</h1>
+        <h1>b: {{ b }}</h1>
+        <h1>a+b: {{ sum }}</h1>
+        <h1>{{obj.name}} - {{obj.age}} - {{obj.address}}</h1>
+        <button @click="changeA">改a</button>
+        <button @click="changeObj">改obj</button>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    a: 1,
+                    b: 2,
+                    obj: {
+                        name: "cyeext",
+                        age: 30,
+                        address: "shanghai"
+                    }
+                }
+            },
+            methods: {
+                changeA() {
+                    this.a = 100
+                },
+                changeObj() {
+                    this.obj.name = "陈洋"
+                }
+            },
+
+            computed: {
+                sum() {
+                    return this.a + this.b
+                }
+            },
+
+            watch: {
+                a() {
+                    console.log("a变了")
+                },
+                sum() {
+                    console.log("sum变了")
+                },
+                // obj() {
+                //     console.log("obj变了")  // 浅层监听，引用未变，不会执行
+                // },
+                obj: {  // 深层监听，改属性值也会执行，损耗性能，不推荐使用
+                    handler() {
+                        console.log("obj变了")
+                    },
+                    deep: true
+                }
+            }
+
+
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
